@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AlgorithmsDataStructuresWeb.LinkedList.Models
+namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 {
     public class Node
     {
         public  Node next
         {
-            get => next;
-            set=>value=next;
+           get;set;
         }
     
         public int data { get; set; }
