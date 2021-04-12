@@ -1,4 +1,3 @@
-using AlgorithmsDataStructuresWeb.LinkedLists.Util;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -14,12 +13,6 @@ namespace AlgorithmsDataStructuresWeb
         public static void Main(string[] args)
         {
             LinkedLists.Models.LinkedList list = new LinkedLists.Models.LinkedList();
-            int[] array2 = new int[] { 1, 3, 5, 7, 9 };
-            foreach (int i in array2)
-            {
-                list.append(i);
-            }
-
             list.printList();
             list.reverseIterative();
             list.printList();

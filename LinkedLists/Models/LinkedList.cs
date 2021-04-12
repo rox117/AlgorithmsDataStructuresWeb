@@ -13,7 +13,12 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
         {
             _head = head;
         }
-        public LinkedList() { }
+        public LinkedList() {
+            for (int i = 0; i < 10;i++)
+            {
+                this.append(i);
+            }
+        }
 
         
         public Node _head { get; set; }
