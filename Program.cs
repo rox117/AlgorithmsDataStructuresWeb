@@ -12,7 +12,7 @@ namespace AlgorithmsDataStructuresWeb
     {
         public static void Main(string[] args)
         {
-            LinkedLists.Models.LinkedList list = new LinkedLists.Models.LinkedList();
+            LinkedLists.Models.LinkedListImpl<int> list = new LinkedLists.Models.LinkedListImpl<int>();
             list.printList();
             list.reverseIterative();
             list.printList();

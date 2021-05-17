@@ -7,58 +7,73 @@ using System.Threading.Tasks;
 
 namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 {
-    public class LinkedList
+    public class LinkedListImpl<T> where T:new()
     {
-        public LinkedList(Node head)
+        public NodeImpl<T> _head { get; set; }
+
+        public int size { get; set; } = 0;
+        
+        public LinkedListImpl(NodeImpl<T> head)
         {
             _head = head;
-        }
-        public LinkedList() {
-            for (int i = 0; i < 10;i++)
-            {
-                this.append(i);
-            }
-        }
+        }       
 
-        
-        public Node _head { get; set; }
-
-        public void append(int data)
+        public void append(T data)
         {
             if (_head == null)
             {
-                _head = new Node(data);
+                _head = new NodeImpl<T>(data);
                 return;
             }
-            Node current=_head;
+            NodeImpl<T> current=_head;
             while (current.next != null)
             {
                 current = current.next;
             }
-            current.next = new Node(data);
+            current.next = new NodeImpl<T>(data);
+            size++;
 
 
         }
 
-        public void prepend(int data)
+        public LinkedListImpl()
         {
-            Node current = new Node(data);
+            foreach (T dicVal in valueIterator())
+            {
+                this.append(dicVal);
+            }
+        }
+
+        public static IEnumerable<T> valueIterator()
+        {
+            yield return new T();
+            yield return new T();
+            yield return new T();
+            yield return new T();
+            yield return new T();
+        }
+
+        public void prepend(T data)
+        {
+            NodeImpl<T> current = new NodeImpl<T>(data);
             current.next = _head;
             _head = current;
+            size++;
         }
 
-        public void delete(int key)
+        public void delete(T key)
         {
             if (_head == null) return;
-            if (_head.data == key)
+            if (_head.data.Equals( key))
                 _head = _head.next;
-            Node current = _head;
+            NodeImpl<T> current = _head;
 
             while (current.next != null)
             {
-                if (current.next.data == key)
+                if (current.next.data.Equals( key))
                     current.next=current.next.next;
             }
+            size--;
         }
 
         public void printList()
@@ -67,7 +82,7 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
             {
                 Console.WriteLine("empty list");
             }
-            Node current = _head;
+            NodeImpl<T> current = _head;
             while (current != null)
             {
                 System.Diagnostics.Debug.WriteLine(current.data);
@@ -78,13 +93,13 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 
         }
 
-        public  Node reverseIterative()
+        public  NodeImpl<T> reverseIterative()
         {
             if (_head == null)
             {
                 return null;
             }
-            Node current, prev = null, next;
+            NodeImpl<T> current, prev = null, next;
             current = _head;
             while (current != null)
             {
@@ -99,13 +114,13 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 
         }
 
-          public  Node reverseRecursive(Node head)
+          public  NodeImpl<T> reverseRecursive(NodeImpl<T> head)
         {
             if (head == null|| head.next==null)
             {
                 return head;
             }
-            Node reversedHead= reverseRecursive(head.next);
+            NodeImpl<T> reversedHead= reverseRecursive(head.next);
             head.next.next = head;
             head.next = null;
             return reversedHead;

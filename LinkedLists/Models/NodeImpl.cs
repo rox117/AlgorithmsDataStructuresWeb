@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 {
-    public class Node
+    public class NodeImpl<T>
     {
-        public  Node next
+        public  NodeImpl<T> next
         {
            get;set;
         }
     
-        public int data { get; set; }
+        public T data { get; set; }
 
-        public Node(int data) => this.data = data;
+        public NodeImpl(T data) => this.data = data;
     }
 }
