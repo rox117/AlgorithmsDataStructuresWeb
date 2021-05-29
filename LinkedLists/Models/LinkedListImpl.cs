@@ -1,17 +1,24 @@
 ﻿using AlgorithmsDataStructuresWeb.LinkedLists.Models;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 {
-    public class LinkedListImpl<T> where T:new()
+    public class LinkedListImpl<T> : IEnumerable<T>
     {
+        
         public NodeImpl<T> _head { get; set; }
 
-        public int size { get; set; } = 0;
+        public NodeImpl<T> _current { get; set; }
+
+        protected int _position { get; set; } =-1;
+        
+
+        public int _size { get; set; } = 0;
         
         public LinkedListImpl(NodeImpl<T> head)
         {
@@ -31,7 +38,7 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
                 current = current.next;
             }
             current.next = new NodeImpl<T>(data);
-            size++;
+            _size++;
 
 
         }
@@ -46,11 +53,11 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 
         public static IEnumerable<T> valueIterator()
         {
-            yield return new T();
-            yield return new T();
-            yield return new T();
-            yield return new T();
-            yield return new T();
+            yield return (T) new Object();
+            yield return (T)new Object();
+            yield return (T)new Object();
+            yield return (T)new Object();
+
         }
 
         public void prepend(T data)
@@ -58,7 +65,7 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
             NodeImpl<T> current = new NodeImpl<T>(data);
             current.next = _head;
             _head = current;
-            size++;
+            _size++;
         }
 
         public void delete(T key)
@@ -73,7 +80,7 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
                 if (current.next.data.Equals( key))
                     current.next=current.next.next;
             }
-            size--;
+            _size--;
         }
 
         public void printList()
@@ -127,6 +134,24 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
            
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            _current = _head;
+            while (_current != null)
+            {
+                yield return _current.data;
+                _current = _current.next;
+            }
+        }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            _current = _head;
+            while (_current != null)
+            {
+                yield return _current.data;
+                _current = _current.next;
+            }
+        }
     }
 }
