@@ -53,10 +53,10 @@ namespace AlgorithmsDataStructuresWeb.LinkedLists.Models
 
         public static IEnumerable<T> valueIterator()
         {
-            yield return (T) new Object();
-            yield return (T)new Object();
-            yield return (T)new Object();
-            yield return (T)new Object();
+            yield return (T)Activator.CreateInstance(typeof(T));
+            yield return (T)Activator.CreateInstance(typeof(T));
+            yield return (T)Activator.CreateInstance(typeof(T));
+            yield return (T)Activator.CreateInstance(typeof(T));
 
         }
 
